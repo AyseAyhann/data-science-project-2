@@ -9,6 +9,9 @@ conn = psycopg2.connect(
 )
 cur = conn.cursor()
 
+# Önceki çalıştırmalardan / diğer projelerden kalan tabloları temizle
+cur.execute("DROP TABLE IF EXISTS students, courses, instructors, enrollments, course_instructors CASCADE;")
+
 cur.execute("""
 CREATE TABLE IF NOT EXISTS students (
     student_id SERIAL PRIMARY KEY,
